@@ -32,3 +32,8 @@ Usage
 1. Log in with your Google account. **Note that the account has to be Superadmin of the G Suite domain.**
 2. Go to **Contacts** screen.
 3. Create new contacts using the button in the bottom right corner or edit the existing contacts.
+
+Docs
+------------
+Full API documentation generated with [Doxygen](http://www.doxygen.org/) can be found here: 
+https://honzakopecky.github.io/gsuite-shared-contacts-manager/html/
