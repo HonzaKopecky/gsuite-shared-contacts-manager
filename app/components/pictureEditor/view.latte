@@ -1,0 +1,3 @@
+{if $contact->getProfilePhoto() != null}
+<img src="{$contact->getProfilePhoto()|dataStream}" alt="{$contact->getName()->getName()} profile picture">
+{/if}

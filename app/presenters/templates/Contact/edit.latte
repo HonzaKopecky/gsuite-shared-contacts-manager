@@ -1,0 +1,109 @@
+{block title}Edit contact | Google Shared Contacts Manager{/block}
+{block content}
+    <div class="row">
+        <div class="col s12 white p-4 mt-3">
+            <h1>Edit contact {$contact->getName()->getName()}</h1>
+            <div class="contact-form clearfix pb-5">
+                {control editContactForm}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 white p-4 mt-3">
+            <div class="email-form">
+                {control addEmailForm}
+                <div class="pt-3 pb-5" n:snippet="emailList">
+                    {ifset $emails}
+                        {foreach $emails as $key => $m}
+                            <div class="chip">
+                                <i class="material-icons icon-image">
+                                    {if $m->getType() == App\Model\EmailAttribute::EMAIL_HOME}
+                                        home
+                                    {elseif $m->getType() == App\Model\EmailAttribute::EMAIL_WORK}
+                                        work
+                                    {else}
+                                        email
+                                    {/if}
+                                </i>
+                                {$m->getValue()}
+                                <a href="{link removeEmail!, $key}" class="ajax tooltipped" data-tooltip="Remove"><i class="close material-icons">clear</i></a>
+                            </div>
+                        {/foreach}
+                    {/ifset}
+                    <script type="text/javascript">
+                        $(".email-form select").material_select();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 white p-4 mt-3">
+            <div class="phone-form">
+                {control addPhoneForm}
+                <div class="pt-3 pb-5" n:snippet="phoneList">
+                    {ifset $phones}
+                        {foreach $phones as $key => $m}
+                            <div class="chip">
+                                <i class="material-icons icon-image">
+                                    {if $m->getType() == App\Model\PhoneAttribute::PHONE_HOME}
+                                        home
+                                    {elseif $m->getType() == App\Model\PhoneAttribute::PHONE_WORK}
+                                        work
+                                    {elseif $m->getType() == App\Model\PhoneAttribute::PHONE_FAX}
+                                        print
+                                    {else}
+                                        smartphone
+                                    {/if}
+                                </i>
+                                {$m->getValue()}
+                                <a href="{link removePhone!, $key}" class="ajax tooltipped" data-tooltip="Remove"><i class="close material-icons">clear</i></a>
+                            </div>
+                        {/foreach}
+                    {/ifset}
+                    <script type="text/javascript">
+                        $(".phone-form select").material_select();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 white p-4 mt-3">
+            <div class="custom-attributes-form">
+                {control addCustomAttributeForm}
+                <div class="pt-3 pb-5" n:snippet="customsList">
+                    {ifset $customs}
+                        {foreach $customs as $key => $m}
+                            <div class="chip">
+                                {$m->getKey()} : {$m->getValue()}
+                                <a href="{link removeCustomAttribute!, $key}" class="ajax tooltipped" data-tooltip="Remove"><i class="close material-icons">clear</i></a>
+                            </div>
+                        {/foreach}
+                    {/ifset}
+                    <script type="text/javascript">
+                        $(".custom-attributes-form select").material_select();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 white p-4 mt-3">
+            <div class="clearfix photo-editor">
+                {control pictureEditor:edit $contact}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <button id="editContactFormSubmit" class="btn-large waves-effect waves-light float-right my-5">Save all changes</button>
+        </div>
+    </div>
+{/block}
+
+{block jsData}
+    <script type="text/javascript">
+        var autofill = {json_encode($autofill)};
+    </script>
+{/block}

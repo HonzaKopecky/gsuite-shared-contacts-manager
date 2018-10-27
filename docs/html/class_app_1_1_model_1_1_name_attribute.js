@@ -1,0 +1,28 @@
+var class_app_1_1_model_1_1_name_attribute =
+[
+    [ "fromXML", "class_app_1_1_model_1_1_name_attribute.html#a21736741a51f1f45b74b64321490fb05", null ],
+    [ "getAdditionalName", "class_app_1_1_model_1_1_name_attribute.html#a50fbd0acef45b49a86a4e4b424bf8e79", null ],
+    [ "getFamilyName", "class_app_1_1_model_1_1_name_attribute.html#aacaca426b16904a61227e6aa5cdf2d83", null ],
+    [ "getFullName", "class_app_1_1_model_1_1_name_attribute.html#a2b284f11184201a8ba8a92de57f93580", null ],
+    [ "getGivenName", "class_app_1_1_model_1_1_name_attribute.html#ad98356120652fcf843edc98bd59553b0", null ],
+    [ "getName", "class_app_1_1_model_1_1_name_attribute.html#a3d0963e68bb313b163a73f2803c64600", null ],
+    [ "getPrefix", "class_app_1_1_model_1_1_name_attribute.html#a7a333affb97cf092d50f3e59edaa9066", null ],
+    [ "getSuffix", "class_app_1_1_model_1_1_name_attribute.html#ab4e1b0fd79e3410922d667a0e825f48e", null ],
+    [ "setAdditionalName", "class_app_1_1_model_1_1_name_attribute.html#a4a3d5cc8fda7e2a77897d7b1f4fb84f7", null ],
+    [ "setFamilyName", "class_app_1_1_model_1_1_name_attribute.html#a5c495aaaefa0e9cc07e8b7cb5d4c87fd", null ],
+    [ "setGivenName", "class_app_1_1_model_1_1_name_attribute.html#ace585545826af9ec90c677b0e56d22e1", null ],
+    [ "setPrefix", "class_app_1_1_model_1_1_name_attribute.html#a523b9bda674fc27df98f0da0b3f3276c", null ],
+    [ "setSuffix", "class_app_1_1_model_1_1_name_attribute.html#a8b66b44d0135bdf7105bf969d638fabe", null ],
+    [ "toXML", "class_app_1_1_model_1_1_name_attribute.html#a826ba7a68221aa5d1be33144da92bbf1", null ],
+    [ "$additionalName", "class_app_1_1_model_1_1_name_attribute.html#a5673b80e881a4b6a401483b44fc21f00", null ],
+    [ "$familyName", "class_app_1_1_model_1_1_name_attribute.html#ac8cdbad7f31009ef139dd47c8543278e", null ],
+    [ "$givenName", "class_app_1_1_model_1_1_name_attribute.html#a15af18b0f9f0361b3d1d80b0ed3161aa", null ],
+    [ "$prefix", "class_app_1_1_model_1_1_name_attribute.html#a09e8cf95b9d29955a0bfabca9b420edc", null ],
+    [ "$suffix", "class_app_1_1_model_1_1_name_attribute.html#a8a4ee1ac7ecdf8ef590598ad43b23e0a", null ],
+    [ "ATR_ADD_NAME", "class_app_1_1_model_1_1_name_attribute.html#a2e0e7122326f365a70f74bd4b05c79b2", null ],
+    [ "ATR_FAMILY_NAME", "class_app_1_1_model_1_1_name_attribute.html#afcc0b13c1aea477ac3e4a9a6f48ada58", null ],
+    [ "ATR_GIVEN_NAME", "class_app_1_1_model_1_1_name_attribute.html#aa5eb59c68f966ff69bf7e7f998333df9", null ],
+    [ "ATR_NAME", "class_app_1_1_model_1_1_name_attribute.html#ac9aa68d89e9ddbb49edb493075d99ec0", null ],
+    [ "ATR_PREFIX_NAME", "class_app_1_1_model_1_1_name_attribute.html#a1f5426deaf0c60a82d83cc48d4cd29f9", null ],
+    [ "ATR_SUFFIX_NAME", "class_app_1_1_model_1_1_name_attribute.html#a6f20a57ebab3d3f3f4448f969c67dc8d", null ]
+];

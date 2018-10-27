@@ -1,0 +1,46 @@
+#imageCropper > img {
+    max-width: 100%;
+}
+
+#contacts-list .grid-col-id {
+    display: none;
+}
+
+#contacts-list img {
+    width: 50px;
+    border-radius: 50%;
+}
+
+#create-button {
+    position: fixed;
+    top: calc(90% - 56px);
+    left: calc(95% - 56px);
+}
+
+.contact-form fieldset {
+    width:49%;
+    float: left;
+}
+
+.email-form fieldset th,
+.contact-form fieldset th,
+.phone-form fieldset th,
+.custom-attributes-form fieldset th{
+    display: none;
+}
+
+.chip .icon-image {
+    float: left;
+    font-size: 16px;
+    line-height: 32px;
+    padding-right: 8px;
+}
+
+.autocomplete-content.dropdown-content {
+    position: absolute;
+    width: calc(100% - 10px);
+}
+
+form td {
+    position: relative;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{$basePath}/css/cropper.min.css" rel="stylesheet">
+        <link href="{$basePath}/css/style.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+        <script src="{$basePath}/js/vendor/nette.ajax.js"></script>
+        <script src="{$basePath}/js/vendor/cropper.min.js" type="text/javascript"></script>
+    </head>
+    <body class="grey lighten-3">
+        <nav class="orange darken-1" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="{link Homepage:default}" class="brand-logo">Google Shared Contacts Manager</a>
+                {if $user->isLoggedIn()}
+                <ul class="right hide-on-med-and-down">
+                    <li {ifCurrent Dashboard:}class="active"{/ifCurrent}><a href="{link Dashboard:default}">Dashboard</a></li>
+                    <li {ifCurrent Contact:}class="active"{/ifCurrent}><a href="{link Contact:default}">Contacts</a></li>
+                    <li>
+                        <a href="{link Login:logout}" class="tooltipped" data-position="bottom" data-tooltip="Logout" data-delay="50">
+                            <i class="material-icons">exit_to_app</i>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
+                    <li><a href="{link Dashboard}">Dashboard</a></li>
+                    <li><a href="{link Contact:default}">Contacts</a></li>
+                    <li><a href="{link Login:logout}">Logout</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                {/if}
+            </div>
+        </nav>
+        <section>
+            <div class="container">
+                {include content}
+            </div>
+        </section>
+
+        <script type="text/javascript">
+            {foreach $flashes as $flash}
+                Materialize.toast({$flash->message}, 5000);
+            {/foreach}
+        </script>
+        {block jsData}
+        {/block}
+        <script src="{$basePath}/js/main.js"></script>
+    </body>
+</html>
+

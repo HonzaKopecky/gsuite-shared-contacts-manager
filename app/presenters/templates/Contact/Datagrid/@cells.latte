@@ -1,0 +1,178 @@
+{define col-photo}
+    <td>
+        {control pictureEditor:view $row}
+    </td>
+{/define}
+
+{define col-fullname}
+<td>
+    {$row->getName()->getFullName()}
+</td>
+{/define}
+
+{define col-email}
+    <td>
+        <span class="tooltipped" data-tooltip="
+        {foreach $row->getEmails() as $email}
+            {if $iterator->first}
+            {elseif !$iterator->isLast()}
+                {$email->getValue()},
+            {else}
+                {$email->getValue()}
+            {/if}
+        {/foreach}
+        ">
+            {foreach $row->getEmails() as $email}
+                {if $iterator->first}
+                    {$email->getValue()}
+                {/if}
+            {/foreach}
+        </span>
+    </td>
+{/define}
+
+{define col-phone}
+    <td>
+        <span class="tooltipped" data-tooltip="
+        {foreach $row->getPhones() as $phone}
+            {if $iterator->first}
+            {elseif !$iterator->isLast()}
+                {$phone->getValue()},
+            {else}
+                {$phone->getValue()}
+            {/if}
+        {/foreach}
+        ">
+            {foreach $row->getPhones() as $phone}
+                {if $iterator->first}
+                    {$phone->getValue()}
+                {/if}
+            {/foreach}
+        </span>
+    </td>
+{/define}
+
+{define col-updated}
+    <td>
+        {$row->getEditTime()->setTimezone((new \DateTime('now'))->getTimezone())->format('H:i:s d. F Y')}
+    </td>
+{/define}
+
+{define row-actions}
+    <a href="{plink Contact:edit $row->getId()}" class="tooltipped" data-tooltip="Edit"><i class="material-icons">mode_edit</i></a>
+{/define}
+
+{define global-actions}
+    <div class="grid-global-actions row" n:ifset="$form[actions]">
+        <div class="input-field col s6">
+            {input $form[actions][action]}
+        </div>
+        <div class="input-field col-s2">
+            <input type="submit" n:name="$form[actions][process]" class="btn waves-effect waves-light btn" value="Do" id="globalActionsPerform">
+        </div>
+    </div>
+    <script>
+        $('select').material_select();
+        $('.tooltipped').tooltip({ delay: 50 });
+    </script>
+{/define}
+
+{define pagination}
+{/define}
+
+{define global-filter-actions}
+    <input type="submit" n:name="filter" value="filter" class="btn">
+{/define}
+
+{define table-open-tag}
+    <table id="contacts-list" class="highlight responsive-table">
+{/define}
+
+
+{define row-head-filter}
+    <tr class="grid-filters">
+        {ifset $form[actions]}
+            <th class="grid-col-select-all">
+                <input type="checkbox" id="select-all" class="filled-in">
+                <label for="select-all" class="tooltipped" data-tooltip="Select all displayed"></label>
+            </th>
+        {/ifset}
+        {formContainer filter}
+            {foreach $columns as $column}
+                <th class="grid-col-{$column->name}">
+                    {if isset($form['filter'][$column->name])}
+                        {ifset #col-filter-{$column->name}}
+                            {include #"col-filter-{$column->name}" column => $column}
+                        {else}
+                            {include #col-filter column => $column}
+                        {/ifset}
+                    {/if}
+                </th>
+            {/foreach}
+            <th class="grid-col-actions">
+                {include #global-filter-actions showCancel => $showFilterCancel}
+            </th>
+        {/formContainer}
+    </tr>
+{/define}
+
+{define row-inner}
+    {var $primary = $control->getter($row, $rowPrimaryKey)}
+    {php if (!$sendOnlyRowParentSnippet): $this->global->snippetDriver->enter("rows-$primary", "dynamic"); endif;}
+
+    {var $editRow = $editRowKey == $primary && $primary !== NULL && $editRowKey !== NULL}
+    {ifset $form[actions]}
+        <td class="grid-col-global-actions">
+            {formContainer actions}
+                <input type="checkbox" n:name="items:$primary" class="filled-in">
+                <label for="frm-datagrid-form-actions-items-{$primary}"></label>
+            {/formContainer}
+        </td>
+    {/ifset}
+    {foreach $columns as $column}
+        {var $cell = $control->getter($row, $column->name, FALSE)}
+        {if $editRow && $column->name != $rowPrimaryKey && (isset($form['edit'][$column->name]) || isset($this->blockQueue["cell-edit-{$column->name}"]))}
+            <td class="grid-col-{$column->name}">
+                {ifset #cell-edit-$column->name}
+                    {include #"cell-edit-{$column->name}" form => $form, column => $column, row => $row}
+                {else}
+                    {formContainer edit}
+                        {input $column->name}
+                        {if $form[edit][$column->name]->hasErrors()}
+                            <p class="error" n:foreach="$form[edit][$column->name]->getErrors() as $error">{$error}</p>
+                        {/if}
+                    {/formContainer}
+                {/ifset}
+            </td>
+        {else}
+            {ifset #col-$column->name}
+                {include #"col-{$column->name}" row => $row, cell => $cell, iterator => $iterator}
+            {else}
+                <td class="grid-col-{$column->name}">
+                    {ifset #cell-$column->name}
+                        {include #"cell-{$column->name}" row => $row, cell => $cell, iterator => $iterator}
+                    {else}
+                        {$cell}
+                    {/ifset}
+                </td>
+            {/ifset}
+        {/if}
+    {/foreach}
+    {if $hasActionsColumn}
+        <td class="grid-col-actions">
+            {if $editRow}
+                {formContainer edit}
+                    {input $rowPrimaryKey class => 'grid-primary-value'}
+                    {include #row-actions-edit}
+                {/formContainer}
+            {else}
+                {ifset #row-actions}
+                    {include #row-actions row => $row, primary => $primary}
+                {elseif $control->getEditFormFactory()}
+                    {include #row-actions-edit-link row => $row, primary => $primary}
+                {/ifset}
+            {/if}
+        </td>
+    {/if}
+    {php if (!$sendOnlyRowParentSnippet): $this->global->snippetDriver->leave(); endif;}
+{/define}

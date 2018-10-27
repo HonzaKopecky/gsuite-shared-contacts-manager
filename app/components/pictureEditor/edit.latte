@@ -1,0 +1,24 @@
+<fieldset>
+    <legend>Profile picture</legend>
+    <div id="imageCropper" class="mb-3">
+        <img src="
+    {if $contact->getProfilePhoto() != null}
+        {$contact->getProfilePhoto()|dataStream}
+    {/if}
+    " alt="">
+    </div>
+
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>Select</span>
+            <input type="file" name="profileUpload" accept=".jpg,.jpeg,.png,.gif">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Image in JPEG, PNG or GIF format.">
+        </div>
+    </div>
+
+    <div class="clearfix">
+        <button id="uploadCroppedPicture" ajax-location="{link upload!}" class="btn waves-effect waves-light mr-3">Save picture</button>
+    </div>
+</fieldset>

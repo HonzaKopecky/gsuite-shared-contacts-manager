@@ -1,0 +1,16 @@
+{block title}Contacts list | Google Shared Contacts Manager{/block}
+{block content}
+<div class="row">
+    <div class="col s12 white p-4 mt-3">
+        <h1>Contacts list</h1>
+
+        {control datagrid}
+
+        <a class="btn-floating btn-large waves-effect waves-light tooltipped" data-tooltip="Create a contact" data-position="top" href="{link Contact:create}" id="create-button">
+            <i class="material-icons">add</i>
+        </a>
+
+        <p>If you see something strange (for example an entry that was not updated/deleted properly) try to <a href="{link Contact:default}?purge=true">clear cache</a>.</p>
+    </div>
+</div>
+{/block}
